@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style lang="">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 400px;
+            height: 500px;
+            background-color: red;
+            border:20px solid #808080;
+        }
+        .left,.right{
+            width: 50px;
+            height: 50px;
+            background-color: green;
+            margin:185px 10px 0 10px;
+            opacity:0.7;
+            color:#fff;
+            font-size:25px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .top,.button{
+            height: 30px;
+            width: 400px;
+            background-color: #000;
+            opacity:0.8;
+            color:#fff;
+        }
+        .left{
+            float:left; 
+            position:relative;
+            top:-505px;
+        }
+        .right{
+            float:right;
+            position:relative;
+            top:-505px;
+        }
+        .top{
+            position:relative;
+            top:-505px;
+        }
+        .button{
+            position:relative;
+            top:-64px;
+        }
+    </style>
+    
+</head>
+<body>
+    <input type="button" id ="cln" value="循环切换">
+    <input type="button" id ="order" value="顺序切换">
+    <h2></h2>
+    <div id ="box" class="box">
+        <img  alt="" id = "img" width="400px" height="500px">
+        <div class="top" id="top">165156</div>
+        <div class="left" id="left"><</div>
+        <div class="right" id="right">></div>
+        <div class="button" id="button"></div>
+        
+    </div>
+    
+</body>
+<script>
+    var img = document.getElementById("img");
+    var left = document.getElementById("left");
+    var right = document.getElementById("right");
+    var otop = document.getElementById("top");
+    var obutton = document.getElementById("button");
+    var cln = document.getElementById("cln");
+    var order = document.getElementById("order");
+    var num = 0;
+    var judge = true;
+    var imgSrc=["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg"];
+    var imgTxt=["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg"];
+    function fn() {
+        img.src = imgSrc[num]
+        otop.innerHTML = num+1+"/"+imgSrc.length;
+        obutton.innerHTML = imgTxt[num]
+    }
+    fn();
+
+   right.onclick = function () {
+        num++;
+        if (num == imgSrc.length) {
+            if (judge) {
+                num = 0;
+            }else{
+                alert("这是最后一张");
+                num = 0;
+            }  
+        }
+      fn();
+    }
+    left.onclick = function () {
+        num--;
+        if (num == -1)  {
+             if (judge) {
+                num = imgSrc.length-1;
+            }else{
+                alert("这是最后一张");
+                num = 0;
+            }   
+        }
+      fn();
+    }
+    cln.onclick = function () {
+        judge = true;
+    }
+    order.onclick = function () {
+        judge = false;
+    }
+</script>
+</html>
